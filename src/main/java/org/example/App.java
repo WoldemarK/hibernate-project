@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class App {
     public static void main(String[] args) {
 
@@ -35,13 +37,30 @@ public class App {
 //
 //            session.getTransaction().commit();
 //        }
+//        try (sessionFactory) {
+//            Session session = sessionFactory.getCurrentSession();
+//            session.beginTransaction();
+//
+//            Person person = session.get(Person.class, 2);
+//            person.setName("Bob");
+//
+//            session.getTransaction().commit();
+//        }
+//        try (sessionFactory) {
+//            Session session = sessionFactory.getCurrentSession();
+//            session.beginTransaction();
+//
+//            Person person = session.get(Person.class, 2);
+//            session.delete(person);
+//
+//            session.getTransaction().commit();
+//        }
         try (sessionFactory) {
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
-
-            Person person = session.get(Person.class, 2);
-            person.setName("Bob");
-
+            List<Person>people = session.createQuery("from Person ").getResultList();
+            for (Person person : people)
+                System.out.println(person);
             session.getTransaction().commit();
         }
     }
