@@ -20,15 +20,15 @@ public class ActorMovie {
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
 
-            Movie hotHeads = new Movie("Hot heads", 1991);
-
-            Actor actor = session.get(Actor.class, 1);
-
-            hotHeads.addActor(actor);
-
-            actor.addMovie(hotHeads);
-
-            session.save(hotHeads);
+//            Movie hotHeads = new Movie("Hot heads", 1991);
+//
+//            Actor actor = session.get(Actor.class, 1);
+//
+//            hotHeads.addActor(actor);
+//
+//            actor.addMovie(hotHeads);
+//
+//            session.save(hotHeads);
 
 
 //            Movie movie = new Movie("Операция Ы", 2000);
