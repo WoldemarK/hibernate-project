@@ -2,7 +2,9 @@ package org.example.model;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import org.hibernate.annotations.Cascade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,10 +22,19 @@ public class Person {
     @Column(name = "age")
     private int age;
 
-    @OneToMany(mappedBy = "owner",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Item> items;
+
+    public void addItems(Item item) {
+        if (this.items == null) {
+            this.items = new ArrayList<>();
+            this.items.add(item);
+            item.setOwner(this);
+
+        }
+
+    }
 
     public Person(String name, int age) {
         this.name = name;

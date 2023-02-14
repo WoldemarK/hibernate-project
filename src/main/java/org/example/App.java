@@ -2,14 +2,9 @@ package org.example;
 
 import org.example.model.Item;
 import org.example.model.Person;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -23,21 +18,21 @@ public class App {
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
 
-            Person person = session.get(Person.class, 1);
-            Item item = new Item("new ITEM", person);
-
-            person.getItems().add(item);
-
-            session.save(item);
+//            Person person = session.get(Person.class, 1);
+//            Item item = new Item("new ITEM");
+//
+//            person.getItems().add(item);
+//
+//            session.save(item);
 
             Person newPerson = new Person("Test Person create", 20);
 
-            Item newItem = new Item("Test new Item", newPerson);
-
-            newPerson.setItems(new ArrayList<>(Collections.singletonList(newItem)));
+            newPerson.addItems(new Item("Test new Item1"));
+            newPerson.addItems(new Item("Test new Item2"));
+            newPerson.addItems(new Item("Test new Item3"));
+            newPerson.addItems(new Item("Test new Item4"));
 
             session.save(newPerson);
-            session.save(newItem);
 
             session.getTransaction().commit();
 //            Person person = session.get(Person.class, 1);
@@ -81,7 +76,7 @@ public class App {
 //            Session session = sessionFactory.getCurrentSession();
 //            session.beginTransaction();
 //
-//            Person person = session.get(Person.class, 2);
+//
 //            person.setName("Bob");
 //
 //            session.getTransaction().commit();

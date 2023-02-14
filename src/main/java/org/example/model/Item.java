@@ -18,9 +18,8 @@ public class Item {
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
 
-    public Item(String itemName, Person person) {
+    public Item(String itemName) {
         this.itemName = itemName;
-        this.owner = person;
     }
 
     public Item() {
