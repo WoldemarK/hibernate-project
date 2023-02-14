@@ -14,6 +14,7 @@ public class App {
                 .addAnnotatedClass(Item.class);
 
         SessionFactory sessionFactory = configuration.buildSessionFactory();
+
         try (sessionFactory) {
             Session session = sessionFactory.getCurrentSession();
             session.beginTransaction();
@@ -32,7 +33,7 @@ public class App {
             newPerson.addItems(new Item("Test new Item3"));
             newPerson.addItems(new Item("Test new Item4"));
 
-            session.save(newPerson);
+             session.save(newPerson);
 
             session.getTransaction().commit();
 //            Person person = session.get(Person.class, 1);
